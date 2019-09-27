@@ -1,2 +1,2 @@
-# Element-ui
-学习写组件
+# liuqing-elementui
+# 学习编写elementui组件
