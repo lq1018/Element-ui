@@ -1,0 +1,13 @@
+@mixin utils-fix {
+    $selector: &;
+    @at-root {
+     #{$selector}::before,
+     #{$selector}::after {
+          display: block;
+          content: '';
+      }
+     #{$selector}::after {
+          clear: both;
+      }
+    }
+  };
