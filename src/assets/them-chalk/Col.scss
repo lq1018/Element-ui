@@ -1,6 +1,30 @@
-.el-col {
-    box-sizing: border-box;
-    float: left;
+@import './mixins/mixins.scss';
+
+$--sm: 768px;
+$--md: 992px;
+$--lg: 1200px;
+$--xl: 1920px;
+
+$--breakpoints: (
+    xs: ( max-width: $--sm - 1 ),
+    sm: ( min-width: $--sm ),
+    md: ( min-width: $--md ),
+    lg: ( min-width: $--lg ),
+    xl: ( min-width: $--xl ),
+);
+
+@mixin res($key, $map: $--breakpoints) {
+  @if map-has-key($map, $key) {
+      @media only screen and #{inspect(map-get($map, $key))} {
+        @content;
+     }   
+   } @else {
+     @warn "undefined points: `#{$map}`";
+   }
+};
+@include b(col) {
+  box-sizing: border-box;
+  float: left;
 }
 @for $i from 0 through 24 {
     .el-col-#{$i} {
@@ -19,7 +43,7 @@
     }
 }
 // xs < 768px
-@media only screen and (max-width: 767px){
+@include res(xs){
   @for $i from 0 through 24 {
     .el-col-xs-0 {
       display: none;
@@ -41,7 +65,7 @@
 }
 }
 // sm width >= 768px
-@media only screen and (min-width: 768px) {
+@include res(sm) {
   @for $i from 0 through 24 {
     .el-col-sm-0 {
       display: none;
@@ -63,7 +87,7 @@
 }
 }
 // md width >= 992px
-@media only screen and (min-width: 992px) {
+@include res(md) {
   @for $i from 0 through 24 {
     .el-col-md-0 {
       display: none;
@@ -85,7 +109,7 @@
 }
 }
 // lg width >=1200px
-@media only screen and (min-width: 1200px) {
+@include res(lg) {
   @for $i from 0 through 24 {
     .el-col-lg-0 {
       display: none;
@@ -107,7 +131,7 @@
 }
 }
 // xl width >= 1920px
-@media only screen and (min-width: 1920px) {
+@include res(xl) {
   @for $i from 0 through 24 {
     .el-col-xl-0 {
       display: none;

@@ -3,6 +3,7 @@
 @import './mixins/utils.scss';
 
 @include b(row) {
+  box-sizing: border-box;
  @include utils-fix;
  @include m((flex, black)) {
   display: flex;
